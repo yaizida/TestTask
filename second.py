@@ -19,26 +19,30 @@ class Deque:
     - Зависимость дополнительного импорта"""
 
 
-# Очередь
-class Queue:
-    def __init__(self):
-        self.__items = []
+class CircularBufferUsingArray:
+    def __init__(self, max_size):
+        self.max_size = max_size
+        self.buffer = [None] * max_size
+        self.head = 0
+        self.size = 0
 
-    def push(self, item):
-        self.__items.insert(0, item)
+    def append(self, value):
+        if self.size < self.max_size:
+            index = (self.head + self.size) % self.max_size
+            self.buffer[index] = value
+            self.size += 1
+        else:
+            print("Buffer is full")
 
-    def pop(self):
-        return self.__items.pop()
-
-    def peek(self):
-        return self.__items[-1]
-
-    def size(self):
-        return len(self.__items)
-
+    def get(self):
+        result = []
+        for i in range(self.size):
+            index = (self.head + i) % self.max_size
+            result.append(self.buffer[index])
+        return result
 
 """Плюсы(2):
-    - Не зависит от импортов
+    - Не зависит от доп. импортов
     Минусы(2):
     - Скорость
     """
