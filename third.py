@@ -1,25 +1,11 @@
-def quicksort(array):
-    """Быстрая сортировка."""
-    if len(array) <= 1:
-        return array
-    middle_element_index = len(array) // 2
-    pivot = array[middle_element_index]
-    left, center, right = partition(array, pivot)
-    return quicksort(left) + center + quicksort(right)
-
-
-def partition(array, pivot):
-    left, center, right = [], [], []
-    for item in array:
-        if item < pivot:
-            left.append(item)
-        elif item > pivot:
-            right.append(item)
-        elif item == pivot:
-            center.append(item)
-
-    # Кортеж с тремя списками
-    return left, center, right
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        left = [x for x in arr[1:] if x < pivot]
+        right = [x for x in arr[1:] if x >= pivot]
+        return quicksort(left) + [pivot] + quicksort(right)
 
 
 # можно конечно sys.std.readline().rstrip().split()

@@ -20,6 +20,12 @@ def is_even3(value):
     return True
 
 
+def is_even4(value):
+    if value - int(value) == 0:
+        return True
+    return False
+
+
 if __name__ == '__main__':
     value = int(input())
     print(is_even0(value))
